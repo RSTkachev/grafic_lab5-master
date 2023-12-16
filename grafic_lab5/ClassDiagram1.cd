@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="grafic_lab5.ImageAnalizer.AnalyzerResult" Collapsed="true">
+    <Position X="1.5" Y="3.75" Width="1.5" />
+    <AssociationLine Name="ResultFindedItems" Type="grafic_lab5.ImageAnalizer.ResultFindedItem">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.502" Y="0.383" Height="0.182" Width="1.34" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ResultNewComponentItems" Type="grafic_lab5.ImageAnalizer.ResultNewComponentItem">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.942" Y="0.414" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImageAnalizer\ImageAnalyzer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="ResultFindedItems" />
+      <Field Name="ResultNewComponentItems" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="grafic_lab5.ImageAnalizer.ResultFindedItem" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAIAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImageAnalizer\ImageAnalyzer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="grafic_lab5.ImageAnalizer.ResultNewComponentItem" Collapsed="true">
+    <Position X="2.25" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImageAnalizer\ImageAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImageAnalizer.ImageAnalyzer" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>ImageAnalizer\ImageAnalyzer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.Images.BaseImage&lt;T&gt;" Collapsed="true">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABABAABAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Images\BaseImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.Images.GrayImage" Collapsed="true">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Images\GrayImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.Images.BinaryImage" Collapsed="true">
+    <Position X="6.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Images\BinaryImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImageFilter.LinearFilter" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAQAAAAAAAAAAAAAAAAAAAgABAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>ImageFilter\LinearFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImageFilter.MatrixParser" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImageFilter\LinearFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImageFilter.MorphologicalFilter" Collapsed="true">
+    <Position X="13.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>ImageFilter\MorphologicalFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImageFilter.ImagePreparer" Collapsed="true">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <AssociationLine Name="_linearFilter" Type="grafic_lab5.ImageFilter.LinearFilter" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.188" Y="3.062" />
+        <Point X="13.188" Y="3.437" />
+        <Point X="12" Y="3.437" />
+        <Point X="12" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAIAQQAAAAIAAAAIA=</HashCode>
+      <FileName>ImageFilter\ImagePreparer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_linearFilter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="grafic_lab5.Storages.ComponentStorage" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIIAAAAAAAAAAAAAAAAAAAAAAAAEIAAAA=</HashCode>
+      <FileName>Storages\ComponentStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_components" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="grafic_lab5.ImagesData.ComponentData" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImagesData\ComponentData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Data" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="grafic_lab5.ImagesData.MetaData" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImagesData\ComponentData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImagesData.PerceptualHash" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImagesData\ComponentData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImagesData.ComponentDeterminator" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ImagesData\ComponentDeterminator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.ImagesData.ComponentMap" Collapsed="true">
+    <Position X="5.25" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAEAAAAAACAAAABA=</HashCode>
+      <FileName>ImagesData\ComponentMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="grafic_lab5.AddNewComponentForm" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAACSAAABAAABCgESACAAAAAAAAEACAAQBCgCA=</HashCode>
+      <FileName>AddNewComponentForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_newComponentItems" />
+      <Field Name="FindedItems" />
+      <Field Name="FindedComponents" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="grafic_lab5.Form1" Collapsed="true">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAESAAAFAQAADAQAACAAAYAAAAEAAAQwBAgCA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_analyzer" />
+      <Field Name="_imagePreparer" />
+      <Field Name="_storage" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="grafic_lab5.Images.Bit" Collapsed="true">
+    <Position X="6.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Images\BinaryImage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,12 @@
+﻿a 0 ..\\..\\..\\ImagesBase\\src_img_1.bmp
+b 0 ..\\..\\..\\ImagesBase\\src_img_2.bmp
+c 0 ..\\..\\..\\ImagesBase\\src_img_3.bmp
+d 0 ..\\..\\..\\ImagesBase\\src_img_4.bmp
+e 0 ..\\..\\..\\ImagesBase\\src_img_5.bmp
+f 0 ..\\..\\..\\ImagesBase\\src_img_6.bmp
+g 0 ..\\..\\..\\ImagesBase\\src_img_7.bmp
+h 0 ..\\..\\..\\ImagesBase\\src_img_8.bmp
+k 0 ..\\..\\..\\ImagesBase\\src_img_9.bmp
+l 0 ..\\..\\..\\ImagesBase\\src_img_10.bmp
+m 0 ..\\..\\..\\ImagesBase\\src_img_11.bmp
+n 0 ..\\..\\..\\ImagesBase\\src_img_12.bmp
