@@ -76,7 +76,7 @@ public partial class Form1 : Form
         var results = _analyzer.AnalyzeImage(toAnalysis);
 
         var finded = results.ResultFindedItems;
-        /*
+
         // ���� ���� �� ������������� ������
         if (results.ResultNewComponentItems.Any())
         {
@@ -98,7 +98,7 @@ public partial class Form1 : Form
                 finded.AddRange(addForm.FindedItems);
             }
         }
-        */
+
 
         // ������������� ����� ������� � ������ ����
         finded.Sort();
