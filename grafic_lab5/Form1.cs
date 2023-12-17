@@ -5,25 +5,25 @@ using grafic_lab5.Storages;
 namespace grafic_lab5;
 
 /// <summary>
-/// Основная форма
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 /// </summary>
 public partial class Form1 : Form
 {
     /// <summary>
-    /// Анализатор образов
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private ImageAnalyzer _analyzer;
     /// <summary>
-    /// Хранилище образов
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private ComponentStorage _storage;
     /// <summary>
-    /// Предобработчик изображения
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private ImagePreparer _imagePreparer;
 
     /// <summary>
-    /// Изображение, которое анализируется
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private Bitmap _bitmap;
 
@@ -34,7 +34,7 @@ public partial class Form1 : Form
         _imagePreparer = new ImagePreparer();
 
         _storage = new ComponentStorage();
-        _storage.FillComponentStorage("..\\..\\..\\Storages\\сomponents.txt", _imagePreparer);
+        _storage.FillComponentStorage("..\\..\\..\\Storages\\пїЅomponents.txt", _imagePreparer);
         _analyzer = new ImageAnalyzer(_storage);
 
         openFileDialog1.Filter = $"Bitmap files (*.bmp)|*.bmp";
@@ -44,63 +44,63 @@ public partial class Form1 : Form
     }
 
     /// <summary>
-    /// Открыть изображение для анализа
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private void OpenClick(object sender, EventArgs e)
     {
-        // отмена
+        // пїЅпїЅпїЅпїЅпїЅпїЅ
         if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
             return;
 
-        // получаем выбранный файл
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         string filename = openFileDialog1.FileName;
 
-        // установка изображение
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         _bitmap = new Bitmap(filename);
         pictureBox1.Image = _bitmap;
     }
 
     /// <summary>
-    /// Найти образы на открытом изображении
+    /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private void FindClick(object sender, EventArgs e)
     {
         textBox1.Clear();
-        // установка линейного фильтра
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         MatrixParser parser = new MatrixParser("..\\..\\..\\ImageFilter\\filter.txt");
         _imagePreparer.SetLinearFilter(new LinearFilter(parser.Matrix, parser.Coefficient));
 
         var toAnalysis = _imagePreparer.PrepareForAnalysis(_bitmap, comboBox1.SelectedIndex == 1);
 
-        // Распознавание образов, определённых и не найденных 
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
         var results = _analyzer.AnalyzeImage(toAnalysis);
 
         var finded = results.ResultFindedItems;
         /*
-        // Если есть не расспознанные образы
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (results.ResultNewComponentItems.Any())
         {
-            // Спросить пользователя о добавлении новых образов
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             var result = MessageBox.Show(
-                "Программа не смогла распознать некоторые образы",
-                "Вы хотите их добавить?", MessageBoxButtons.YesNo);
+                "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ",
+                "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
-                // Открытие формы добавления образов
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 AddNewComponentForm addForm = new AddNewComponentForm(results.ResultNewComponentItems, _bitmap);
                 addForm.ShowDialog();
 
-                // добавление образов
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 _storage.AddComponent(addForm.FindedComponents);
 
-                // добавление в результат новых образов
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                 finded.AddRange(addForm.FindedItems);
             }
         }
         */
 
-        // Отсортировать слева направо и сверху вниз
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         finded.Sort();
 
         pictureBox1.Image = new Bitmap(_bitmap);
@@ -109,11 +109,11 @@ public partial class Form1 : Form
 
         for (int i = 0; i < finded.Count; i++)
         {
-            // выделение прямоугольником
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             using Pen pen = new Pen(RGBcolorCreator.GetRandomColor(), 4);
             graphics.DrawRectangle(pen, finded[i].Location);
 
-            // Добавление значения
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             string text = finded[i].MetaData.Name + ": " + finded[i].percent.ToString();
             textBox1.AppendText(text);
             textBox1.AppendText(Environment.NewLine);
@@ -121,7 +121,7 @@ public partial class Form1 : Form
     }
 
     /// <summary>
-    /// Установить степень юинаризации
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     /// </summary>
     private void trackBar1_Scroll(object sender, EventArgs e)
     {
@@ -130,7 +130,7 @@ public partial class Form1 : Form
 }
 
 /// <summary>
-/// Генератор цветов
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 /// </summary>
 public static class RGBcolorCreator
 {
