@@ -119,7 +119,7 @@ public class ImageAnalyzer
     /// <summary>
     /// минимальный процент совпадения (от 0 до 1)
     /// </summary>
-    private const double MinimumMatchPercentage = 0.75;
+    private const double MinimumMatchPercentage = 0.9;
 
     /// <summary>
     /// Конструктор

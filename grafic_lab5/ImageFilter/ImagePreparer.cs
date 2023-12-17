@@ -152,8 +152,7 @@ public class ImagePreparer
     public GrayImage min_filter(GrayImage old_image, int size_of_window)
     {
         byte corner = (byte)(size_of_window / 2);
-        int x_max = -1;
-        GrayImage new_image = old_image;
+        GrayImage new_image = new GrayImage(old_image.Width, old_image.Height);
 
         for (int y = 0; y < old_image.Height; ++y)
         {
@@ -171,10 +170,7 @@ public class ImagePreparer
                         }
                     }
                 }
-                //new_image.SetPixel(x, y, min_color);
-                new_image.SetPixel(x, y, old_image.GetPixel(x, y));
-
-                x_max = Math.Max(x_max, x);
+                new_image.SetPixel(x, y, min_color);
             }
 
         }

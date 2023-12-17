@@ -76,7 +76,7 @@ public partial class Form1 : Form
         var results = _analyzer.AnalyzeImage(toAnalysis);
 
         var finded = results.ResultFindedItems;
-        /*
+        
         // Если есть не расспознанные образы
         if (results.ResultNewComponentItems.Any())
         {
@@ -98,7 +98,7 @@ public partial class Form1 : Form
                 finded.AddRange(addForm.FindedItems);
             }
         }
-        */
+        
 
         // Отсортировать слева направо и сверху вниз
         finded.Sort();

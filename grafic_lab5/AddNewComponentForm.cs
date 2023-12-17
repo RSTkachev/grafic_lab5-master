@@ -35,8 +35,24 @@ public partial class AddNewComponentForm : Form
     public AddNewComponentForm(List<ResultNewComponentItem> newComponentItems, Bitmap bitmap)
     {
         InitializeComponent();
+        int count_elements = 0;
+        foreach (ImageAnalizer.ResultNewComponentItem component in newComponentItems)
+        {
+            if (component.Hash != 0)
+            {
+                count_elements++;
+            }
+        }
 
-        _newComponentItems = newComponentItems;
+        _newComponentItems = new List<ResultNewComponentItem>(count_elements);
+
+        foreach (ImageAnalizer.ResultNewComponentItem component in newComponentItems )
+        {
+            if (component.Hash != 0)
+            {
+                _newComponentItems.Add(component);
+            }
+        }
         _bitmap = bitmap;
         FindedItems = new List<ResultFindedItem>();
         FindedComponents = new List<ComponentData>();
