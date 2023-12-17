@@ -90,12 +90,18 @@ public class ComponentStorage
         // нахождение компонент связности по карте
         var components = ComponentDeterminator.FindComponents(componentMap);
 
-        if (components.Count == 1)
+        int size = 0;
+        int number = 0;
+
+        for (int i = 0; i < components.Count; i++)
         {
-            BinaryImage componentToAdd = componentMap.ClipComponent(components[0].Item1, components[0].Item2);
-
-            AddComponent(new ComponentData(metaData, componentToAdd));
+            if (components[i].Item1.Width * components[i].Item1.Height > size)
+            {
+                size = components[i].Item1.Width * components[i].Item1.Height;
+                number = i;
+            }
         }
-    }
 
+        AddComponent(new ComponentData(metaData, componentMap.ClipComponent(components[number].Item1, components[number].Item2)));
+    }
 }

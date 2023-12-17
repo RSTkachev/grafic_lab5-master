@@ -53,7 +53,7 @@ public partial class AddNewComponentForm : Form
 
         // для отображения обнуружения образа
         FindedItems.Add(new ResultFindedItem(metaData,
-            _newComponentItems[_index].Location));
+            _newComponentItems[_index].Location, 0));
 
         // для добавления нового образа
         FindedComponents.Add(new ComponentData(metaData,

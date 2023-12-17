@@ -55,12 +55,9 @@ public class MorphologicalFilter
     {
         BinaryImage res = new BinaryImage(image.Width, image.Height);
 
-        int height = image.Height - 1;
-        int width = image.Width - 1;
-
-        for (int y = 1; y < height; y++)
+        for (int y = 1; y < image.Height - 1; y++)
         {
-            for (int x = 1; x < width; x++)
+            for (int x = 1; x < image.Width - 1; x++)
             {
                 if (image.GetPixel(x, y) == Bit.one)
                 {
@@ -88,6 +85,7 @@ public class MorphologicalFilter
     /// <returns></returns>
     public static BinaryImage OpeningFilter(BinaryImage image)
     {
-        return DilatationFilter(ErosionFilter(image));
+        BinaryImage result = DilatationFilter(image);
+        return result;
     }
 }

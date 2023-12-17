@@ -46,10 +46,17 @@ public class ResultFindedItem : IComparable<ResultFindedItem>
     /// </summary>
     public Rectangle Location;
 
-    public ResultFindedItem(MetaData metaData, Rectangle location)
+    /// <summary>
+    /// Процент совпадения
+    /// </summary>
+    public int percent;
+
+    public ResultFindedItem(MetaData metaData, Rectangle location, int percent)
     {
         MetaData = metaData;
         Location = location;
+        this.percent = percent;
+
     }
 
     /// <summary>
@@ -112,7 +119,7 @@ public class ImageAnalyzer
     /// <summary>
     /// минимальный процент совпадения (от 0 до 1)
     /// </summary>
-    private const double MinimumMatchPercentage = 0.75;
+    private const double MinimumMatchPercentage = 0.9;
 
     /// <summary>
     /// Конструктор
@@ -149,7 +156,7 @@ public class ImageAnalyzer
 
             if (response != null && MinimumMatchPercentage <= matchPercentage)
             {
-                result.ResultFindedItems.Add(new ResultFindedItem(response.Data, component.Item1));
+                result.ResultFindedItems.Add(new ResultFindedItem(response.Data, component.Item1, (int)Math.Round(matchPercentage * 100)));
             }
             else
             {

@@ -70,15 +70,15 @@ public class ImagePreparer
 
         image = _linearFilter.Filter(image, isBlackBackground);
         
-        double binarizationBarrier = Math.Round(BinaryImage.CuclBinarizationBarrier(image));
+        double binarizationBarrier = Math.Round(BinaryImage.CalcBinarizationBarrier(image));
 
         if (IsInteractive)
         {
             if (Math.Abs(binarizationBarrier - _binarizationBarrier) >= 10)
             {
                 var result = MessageBox.Show(
-                    $"Программа считает, что порог бинаризации выгоднее принять за {Math.Round(binarizationBarrier)}, чем {_binarizationBarrier}",
-                    "Вы хотите поменять на рекомендуемую велечину?", MessageBoxButtons.YesNo);
+                    $"Порог бинаризации {Math.Round(binarizationBarrier)} является более предпочтительным, чем {_binarizationBarrier}",
+                    "Вы хотите поменять порог бинаризации на рекомендуемый?", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.No)
                 {

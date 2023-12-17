@@ -58,7 +58,7 @@ public class BinaryImage : BaseImage<Bit>
     /// Вычисление барьерного значения
     /// </summary>
     /// <param name="image">Анализируемое изображения</param>
-    public static double CuclBinarizationBarrier(GrayImage image)
+    public static double CalcBinarizationBarrier(GrayImage image)
     {
         double sum = 0;
 
@@ -70,7 +70,7 @@ public class BinaryImage : BaseImage<Bit>
             }
         }
 
-        // по сути среднее значение всех пикселей
+        // среднее значение всех пикселей
         return sum / (image.Height * image.Width);
     }
 }

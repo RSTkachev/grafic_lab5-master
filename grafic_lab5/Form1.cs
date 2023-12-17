@@ -65,6 +65,7 @@ public partial class Form1 : Form
     /// </summary>
     private void FindClick(object sender, EventArgs e)
     {
+        textBox1.Clear();
         // установка линейного фильтра
         MatrixParser parser = new MatrixParser("..\\..\\..\\ImageFilter\\filter.txt");
         _imagePreparer.SetLinearFilter(new LinearFilter(parser.Matrix, parser.Coefficient));
@@ -75,7 +76,7 @@ public partial class Form1 : Form
         var results = _analyzer.AnalyzeImage(toAnalysis);
 
         var finded = results.ResultFindedItems;
-
+        /*
         // Если есть не расспознанные образы
         if (results.ResultNewComponentItems.Any())
         {
@@ -97,10 +98,10 @@ public partial class Form1 : Form
                 finded.AddRange(addForm.FindedItems);
             }
         }
+        */
 
         // Отсортировать слева направо и сверху вниз
         finded.Sort();
-        string str = "";
 
         pictureBox1.Image = new Bitmap(_bitmap);
 
@@ -113,11 +114,10 @@ public partial class Form1 : Form
             graphics.DrawRectangle(pen, finded[i].Location);
 
             // Добавление значения
-            str += finded[i].MetaData.Name;
+            string text = finded[i].MetaData.Name + ": " + finded[i].percent.ToString();
+            textBox1.AppendText(text);
+            textBox1.AppendText(Environment.NewLine);
         }
-
-        // вывод строки на экран
-        textBox1.Text = str;
     }
 
     /// <summary>
