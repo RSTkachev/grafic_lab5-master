@@ -57,18 +57,13 @@ public class ImagePreparer
     /// <param name="bitmap">Изображения</param>
     /// <param name="isBlackBackground">Чёрный ли фон</param>
     /// <returns></returns>
-    public BinaryImage PrepareForAnalysis(Bitmap bitmap, bool isBlackBackground)
+    public BinaryImage PrepareForAnalysis(Bitmap old_bitmap, bool isBlackBackground)
     {
+        Bitmap bitmap = change_contrast(old_bitmap, 20);
+
         GrayImage image = GrayImage.Create(bitmap);
-        
-        if (_linearFilter == null)
-        {
-            MatrixParser parser = new MatrixParser("..\\..\\..\\ImageFilter\\filter.txt");
 
-            _linearFilter = new LinearFilter(parser.Matrix, parser.Coefficient);
-        }
-
-        image = _linearFilter.Filter(image, isBlackBackground);
+        image = min_filter(image, 3);
         
         double binarizationBarrier = Math.Round(BinaryImage.CalcBinarizationBarrier(image));
 
@@ -92,5 +87,98 @@ public class ImagePreparer
         binaryImage = MorphologicalFilter.OpeningFilter(binaryImage);
 
         return binaryImage;
+    }
+
+
+    public static Bitmap change_contrast(Bitmap bitmap, int correction)
+    {
+
+        Int32 lAB = 0;
+        UInt16 valueR;
+        UInt16 valueG;
+        UInt16 valueB;
+
+        Int32[] b = new Int32[256];
+
+        for (int y = 0; y < bitmap.Height; ++y)
+        {
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                Color color = bitmap.GetPixel(x, y);
+                valueR = color.R;
+                valueG = color.G;
+                valueB = color.B;
+
+                lAB += (Int32)(valueR * 0.299 + valueG * 0.587 + valueB * 0.114);
+            }
+        }
+
+        lAB /= bitmap.Width * bitmap.Height;
+
+        double k = 1.0 + correction / 100.0;
+
+
+        for (int i = 0; i < 256; i++)
+        {
+            Int32 delta = (Int32)(i - lAB);
+            Int32 temp = (Int32)(lAB + k * delta);
+
+            if (temp < 0)
+            {
+                temp = 0;
+            }
+            if (temp >= 255)
+            {
+                temp = 255;
+            }
+            b[i] = (Int32)temp;
+        }
+
+
+        for (int y = 0; y < bitmap.Height; ++y)
+        {
+            for (int x = 0; x < bitmap.Width; ++x)
+            {
+                Color color = bitmap.GetPixel(x, y);
+                valueR = (byte)b[color.R];
+                valueG = (byte)b[color.G];
+                valueB = (byte)b[color.B];
+                bitmap.SetPixel(x, y, Color.FromArgb(valueR, valueG, valueB));
+            }
+        }
+        return bitmap;
+    }
+
+    public GrayImage min_filter(GrayImage old_image, int size_of_window)
+    {
+        byte corner = (byte)(size_of_window / 2);
+        int x_max = -1;
+        GrayImage new_image = old_image;
+
+        for (int y = 0; y < old_image.Height; ++y)
+        {
+            for (int x = 0; x < old_image.Width; ++x)
+            {
+                byte min_color = 255;
+
+                for (int i = -corner; i <= corner; ++i)
+                {
+                    for (int j = -corner; j <= corner; ++j)
+                    {
+                        if (x + i >= 0 && x + i < old_image.Width && y + j >= 0 && y + j < old_image.Height)
+                        {
+                            min_color = Math.Min(min_color, old_image.GetPixel(x + i, y + j));
+                        }
+                    }
+                }
+                //new_image.SetPixel(x, y, min_color);
+                new_image.SetPixel(x, y, old_image.GetPixel(x, y));
+
+                x_max = Math.Max(x_max, x);
+            }
+
+        }
+
+        return new_image;
     }
 }

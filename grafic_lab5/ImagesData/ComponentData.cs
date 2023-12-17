@@ -37,30 +37,59 @@ public class PerceptualHash
     {
         UInt64 perceptualHash = 0;
 
+        // масштабирующее значение по осям координат
+        double scale = Math.Min(8.0 / binaryImage.Height, 8.0 / binaryImage.Width);
 
-        double length_step = Math.Max(binaryImage.Height / 64.0, binaryImage.Width / 8.0);
+        // получение масштабируемого размера
+        // либо высота либо ширина равна 8, другая характеристика меньше
+        int height = (int)Math.Round(binaryImage.Height * scale);
+        int width = (int)Math.Round(binaryImage.Width * scale);
 
-
-        int x, y;
-
+        int x = 0, y = 0;
         if (binaryImage.Width > 0 && binaryImage.Height > 0)
         {
-            int width_steps = 0;
-            int height_steps = 0;
-
-            while(height_steps * length_step < binaryImage.Height - 1) 
+            for (int i = 0; i < height - 1; i++)
             {
-                width_steps = 0;
-                while (width_steps * length_step < binaryImage.Width - 1)
+                for (int j = 0; j < width; j++)
                 {
-                    perceptualHash <<= 1;
+                    // значение в исходном изображении по масштабируемым значениям нового изображения
+                    x = Math.Min((int)Math.Round(j / scale), binaryImage.Width - 1);
+                    y = Math.Min((int)Math.Round(i / scale), binaryImage.Height - 1);
 
-                    perceptualHash |= (byte)binaryImage.GetPixel((int)(width_steps * length_step), (int)(height_steps * length_step));
-                    width_steps++;
+                    perceptualHash |= (byte)binaryImage.GetPixel(x, y);
+
+                    perceptualHash <<= 1;
                 }
-                height_steps++;
+
+                // если width меньше 8, то недостающие пиксили равны 0
+                perceptualHash <<= 8 - width;
             }
+
+            // необходимо развернуть цикл, так как будет переполнение на последем шаге
+            for (int j = 0; j < width - 1; j++)
+            {
+                // значение в исходном изображении по масштабируемым значениям нового изображения
+                x = Math.Min((int)Math.Round(j / scale), binaryImage.Width - 1);
+                y = Math.Min((int)Math.Round((height - 1) / scale), binaryImage.Height - 1);
+
+                perceptualHash |= (byte)binaryImage.GetPixel(x, y);
+
+                perceptualHash <<= 1;
+            }
+
+            // значение в исходном изображении по масштабируемым значениям нового изображения
+            x = Math.Min((int)Math.Round((width - 1) / scale), binaryImage.Width - 1);
+            y = Math.Min((int)Math.Round((height - 1) / scale), binaryImage.Height - 1);
+
+            perceptualHash |= (byte)binaryImage.GetPixel(x, y);
+
+            // если width меньше 8, то недостающие пиксили равны 0
+            perceptualHash <<= 8 - width;
+
+            // если height меньше 8, то недостающие пиксили равны 0
+            perceptualHash <<= (8 - height) * 8;
         }
+
 
         return perceptualHash;
     }
